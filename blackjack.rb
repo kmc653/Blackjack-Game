@@ -24,6 +24,19 @@ def deal(card)
   card.unshift([FACE.sample, NUMBER.sample])
 end
 
+def hit_or_stay(num, card)
+  case num
+  when 1
+    deal(card)
+    now_player_total = calculate_total(card)
+      puts "Dealing card to player: #{card[0]}"
+      puts "You total is now: #{now_player_total}"
+      check_win_busted(card)
+  when 2
+    
+  end
+end
+
 def check_win_busted(card)
   status = false
   total = calculate_total(card)
@@ -36,7 +49,8 @@ end
 
 FACE = ['S', 'H', 'D', 'C']
 NUMBER = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
-VALUE = {}
+now_dealer_total = 0
+now_player_total = 0
 
 loop do 
   dealer = []
@@ -55,15 +69,16 @@ loop do
   
   loop do 
     puts "\nWhat would you like to do? 1) hit 2) stay"
-    hit_or_stay = gets.chomp.to_i
-
-    if hit_or_stay == 1
-      deal(player)
-      now_player_total = calculate_total(player)
-      puts "Dealing card to player: #{player[0]}"
-      puts "{name} total is now: #{now_player_total}"
-      check_win_busted(player)
-    end
+    decision = gets.chomp.to_i
+    hit_or_stay(decision, player)
+    
+    #if hit_or_stay == 1
+      #deal(player)
+      #now_player_total = calculate_total(player)
+      #puts "Dealing card to player: #{player[0]}"
+      #puts "#{name} total is now: #{now_player_total}"
+      #check_win_busted(player)
+    #end
   end
 end
 
